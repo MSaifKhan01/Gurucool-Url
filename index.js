@@ -1,9 +1,11 @@
 const express=require("express")
-
-
 const cors=require("cors")
+
+
 const connection = require("./Config/DB")
 const { UrlRouter } = require("./Routes/urlRoutes")
+const { UserRouter } = require("./Routes/UserRoutes")
+const { Auth } = require("./Middleware/Auth")
 
 
 
@@ -12,8 +14,16 @@ app.use(cors())
 app.use(express.json())
 
 
+//  User Route
+app.use("/user",UserRouter)
+
+// This is an auth middleware we can use if need 
 
 
+// app.use(Auth)
+
+
+// Url Route
 app.use("/url",UrlRouter)
 
 
