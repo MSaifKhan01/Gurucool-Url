@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-console.log(process.env.TokenSecret)
+
 
 
 const Auth = async (req, res, next) => {
