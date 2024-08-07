@@ -19,7 +19,7 @@ UserRouter.post("/SignUp",async(req,res)=>{
         }
         bcrypt.hash(password,5,async(err,hash)=>{
             const newUser= new UserModel({username,email,password:hash})
-            console.log("Signup",newUser)
+            // console.log("Signup",newUser)
             await  newUser.save()
     
             res.status(200).send({ msg: "Registration Successful" })
@@ -49,7 +49,7 @@ UserRouter.post("/Login",async(req,res)=>{
         }
     
         const isUser= await UserModel.findOne(query)
-        console.log("login",isUser)
+        // console.log("login",isUser)
     
         if(!isUser){
             return res.status(201).send({ msg: "You Need To Register" })
