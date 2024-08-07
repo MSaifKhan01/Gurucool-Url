@@ -21,7 +21,7 @@ UrlRouter.post("/add",async (req,res)=>{
         }
         const shortId = shortid()
        
-        const ShortUrl= `http://localhost:4000/url/${shortId}`
+        const ShortUrl= `https://gurucool-url.onrender.com/url/${shortId}`
         const newUrl = new UrlModel({ shortUrl: ShortUrl, originalUrl: url})
         // console.log(newUrl)
         await newUrl.save()
@@ -37,7 +37,7 @@ UrlRouter.post("/add",async (req,res)=>{
 //  This Route for Redirect from short url to original url
 UrlRouter.get("/:shortId",async(req,res)=>{
     const { shortId } = req.params
-    const ShortUrl= `http://localhost:4000/url/${shortId}`
+    const ShortUrl= `https://gurucool-url.onrender.com/url/${shortId}`
     const Url = await UrlModel.findOne({ shortUrl: ShortUrl })
     if(!Url){
         return res.status(404).send({ msg: "This short URL is not in our database, so redirection is not possible." })
