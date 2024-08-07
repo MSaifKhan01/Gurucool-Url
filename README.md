@@ -4,29 +4,9 @@
 
 This app allows users to register, log in, and shorten URLs. It is live at [https://gurucool-url.onrender.com](https://gurucool-url.onrender.com).
 
-## Getting Started
 
-1. **Clone the repo:**
-   ```bash
-   git clone <repository-url>
-   ```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Create a `.env` file with:**
-   ```bash
-   TokenSecret=<your-jwt-secret>
-   ```
-
-4. **Start the server:**
-   ```bash
-   npm start
-   ```
-
-## Endpoints
+## Endpoints Request Body And Response Structure
 
 ### User Routes
 
