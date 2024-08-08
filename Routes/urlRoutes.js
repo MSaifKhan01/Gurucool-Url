@@ -1,10 +1,31 @@
 const express=require("express")
 
-const shortid = require("shortid")
+// const shortid = require("shortid")
 const UrlModel = require("../Models/urlModel")
 
 
 const UrlRouter=express.Router()
+
+
+
+
+// for generating uniq id
+function UniqueIdFn() {
+  
+    let date=Date.now().toString(36)
+    let random=Math.random().toString(36).substr(2, 9)
+    let UniqId=date+ random;
+    // console.log(UniqId)
+   
+    return  UniqId;
+}
+
+
+
+
+
+
+
 
 // this route for creating a short url 
 UrlRouter.post("/add",async (req,res)=>{
@@ -19,9 +40,14 @@ UrlRouter.post("/add",async (req,res)=>{
         if (!url) {
             return res.status(209).send({ msg: "url Required" })
         }
-        const shortId = shortid()
+        // const shortId = shortid()
+
+        const shortId = UniqueIdFn()
        
         const ShortUrl= `https://gurucool-url.onrender.com/url/${shortId}`
+
+       
+
         const newUrl = new UrlModel({ shortUrl: ShortUrl, originalUrl: url})
         // console.log(newUrl)
         await newUrl.save()
@@ -38,6 +64,7 @@ UrlRouter.post("/add",async (req,res)=>{
 UrlRouter.get("/:shortId",async(req,res)=>{
     const { shortId } = req.params
     const ShortUrl= `https://gurucool-url.onrender.com/url/${shortId}`
+  
     const Url = await UrlModel.findOne({ shortUrl: ShortUrl })
     if(!Url){
         return res.status(404).send({ msg: "This short URL is not in our database, so redirection is not possible." })
